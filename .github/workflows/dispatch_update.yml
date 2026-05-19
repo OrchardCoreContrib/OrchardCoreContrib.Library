@@ -11,5 +11,6 @@ jobs:
       - name: Dispatch update to Orchard Core Contrib.App
         uses: peter-evans/repository-dispatch@v3
         with:
+          token: ${{ secrets.PAT }}
           repository: OrchardCoreContrib/OrchardCoreContrib.App
           event-type: update-submodule
