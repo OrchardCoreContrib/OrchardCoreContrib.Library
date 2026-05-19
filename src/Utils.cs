@@ -1,5 +1,8 @@
 ﻿namespace OrchardCoreContrib.Library;
 
+/// <summary>
+/// Represents a utility class that provides methods for generating greeting messages.
+/// </summary>
 public static class Utils
 {
     [Obsolete("Use Greeting(string firstName, string lastName) instead.")]
