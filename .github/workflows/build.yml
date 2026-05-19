@@ -11,7 +11,8 @@ jobs:
     name: Build windows-latest
     runs-on: windows-latest
     steps:
-    - uses: actions/checkout@v6
+    - name: Checkout Repository
+      uses: actions/checkout@v6
     - name: Setup .NET Core
       uses: actions/setup-dotnet@v5
       with:
@@ -22,3 +23,22 @@ jobs:
       run: dotnet build --configuration Release --no-restore
     - name: Test
       run: dotnet test --no-restore --verbosity normal
+
+    - name: Checkout OrchardCoreContrib.App Repository
+      uses: actions/checkout@v6
+      with: 
+          repository: OrchardCoreContrib/OrchardCoreContrib.App
+          token: ${{ secrets.PRIVATE_TOKEN_GITHUB }}
+          submodules: true
+    - name:  Update submodules  
+      run: |
+        git submodule update --init --recursive
+        git submodule update --recursive --remote
+
+    - name: Commit and push changes  
+      run: |
+        git config user.email "actions@github.com"
+        git config user.name "GitHub Actions Bot"
+        git add --all
+        git commit -m "Update submodules" || echo "No changes to commit"
+        git push
