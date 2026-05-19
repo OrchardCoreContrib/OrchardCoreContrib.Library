@@ -28,7 +28,7 @@ jobs:
       uses: actions/checkout@v6
       with: 
           repository: OrchardCoreContrib/OrchardCoreContrib.App
-          token: ${{ secrets.PERSONAL_ACCESS_TOKEN }}
+          token: ${{ secrets.GITHUB_TOKEN }}
           submodules: true
     - name:  Update submodules  
       run: |
