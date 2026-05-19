@@ -1,0 +1,15 @@
+name: Dispatch Update Submodule
+
+on:
+  push:
+    branches:
+      - main
+jobs:
+  dispatch:
+    runs-on: windows-latest
+    steps:
+      - name: Dispatch update to Orchard Core Contrib.App
+        uses: peter-evans/repository-dispatch@v3
+        with:
+          repository: OrchardCoreContrib/OrchardCoreContrib.App
+          event-type: update-submodule
