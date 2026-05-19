@@ -1,0 +1,35 @@
+name: Update OrchardCoreContrib.App submodules
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [ "main" ]
+
+jobs:
+  update-submodules:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout OrchardCoreContrib.App
+        uses: actions/checkout@v6
+        with:
+          repository: OrchardCoreContrib/OrchardCoreContrib.App
+          token: ${{ secrets.PERSONAL_ACCESS_TOKEN }}
+          submodules: true
+
+      - name: Update submodules
+        run: |
+          git submodule update --init --recursive
+          git submodule update --recursive --remote
+
+      - name: Commit and push changes
+        env:
+          TOKEN: ${{ secrets.PERSONAL_ACCESS_TOKEN }}
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add --all
+          git diff --cached --quiet && exit 0
+          git commit -m "Update submodules"
+          git remote set-url origin https://x-access-token:${TOKEN}@github.com/OrchardCoreContrib/OrchardCoreContrib.App.git
+          git push origin HEAD:main
