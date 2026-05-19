@@ -5,31 +5,44 @@ on:
   push:
     branches: [ "main" ]
 
+permissions:
+  contents: read
+
 jobs:
   update-submodules:
     runs-on: ubuntu-latest
 
     steps:
+      - name: Validate token
+        env:
+          SUBMODULE_TOKEN: ${{ secrets.SUBMODULE_TOKEN }}
+        run: |
+          if [ -z "$SUBMODULE_TOKEN" ]; then
+            echo "::error::Missing SUBMODULE_TOKEN secret. Add a PAT with access to OrchardCoreContrib/OrchardCoreContrib.App."
+            exit 1
+          fi
+
       - name: Checkout OrchardCoreContrib.App
         uses: actions/checkout@v6
         with:
           repository: OrchardCoreContrib/OrchardCoreContrib.App
-          token: ${{ secrets.PERSONAL_ACCESS_TOKEN }}
+          token: ${{ secrets.SUBMODULE_TOKEN }}
           submodules: true
 
       - name: Update submodules
         run: |
+          git submodule sync --recursive
           git submodule update --init --recursive
           git submodule update --recursive --remote
 
       - name: Commit and push changes
         env:
-          TOKEN: ${{ secrets.PERSONAL_ACCESS_TOKEN }}
+          SUBMODULE_TOKEN: ${{ secrets.SUBMODULE_TOKEN }}
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
           git add --all
           git diff --cached --quiet && exit 0
           git commit -m "Update submodules"
-          git remote set-url origin https://x-access-token:${TOKEN}@github.com/OrchardCoreContrib/OrchardCoreContrib.App.git
+          git remote set-url origin https://x-access-token:${SUBMODULE_TOKEN}@github.com/OrchardCoreContrib/OrchardCoreContrib.App.git
           git push origin HEAD:main
