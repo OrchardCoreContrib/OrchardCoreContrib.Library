@@ -12,12 +12,4 @@ public static class Utils
     /// <param name="lastName">The last name to include in the greeting. Cannot be null.</param>
     /// <returns>A string containing the greeting message formatted as "Hello, {firstName} {lastName}!".</returns>
     public static string Greeting(string firstName, string lastName) => $"Hello, {firstName} {lastName}!";
-
-    /// <summary>
-    /// Returns a personalized greeting message for the specified name.
-    /// </summary>
-    /// <param name="name">The name of the person to include in the greeting. Cannot be null.</param>
-    /// <returns>A string containing a greeting addressed to the specified name.</returns>
-    [Obsolete("Use the Greeting(string firstName, string lastName) method instead.")]
-    public static string Greeting(string name) => $"Hello, {name}!";
 }
