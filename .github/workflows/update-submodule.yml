@@ -74,6 +74,9 @@ jobs:
           body: |
             Updated [${{ steps.submodule-new.outputs.repoName }}](${{ steps.submodule-new.outputs.repoUrl }}) from ${{ steps.submodule-new.outputs.oldShort }} to ${{ steps.submodule-new.outputs.newShort }}.
 
+            - Old commit: [${{ steps.submodule-new.outputs.oldShort }}](${{ steps.submodule-new.outputs.oldCommitUrl }})
+            - New commit: [${{ steps.submodule-new.outputs.newShort }}](${{ steps.submodule-new.outputs.newCommitUrl }})
+
             [View changes](${{ steps.submodule-new.outputs.compareUrl }})
           branch: update-submodules
           delete-branch: true
