@@ -10,18 +10,10 @@ permissions:
 
 jobs:
   update-submodules:
-    runs-on: ubuntu-latest
+    name: Build windows-latest
+    runs-on: windows-latest
 
     steps:
-      - name: Validate token
-        env:
-          SUBMODULE_TOKEN: ${{ secrets.SUBMODULE_TOKEN }}
-        run: |
-          if [ -z "$SUBMODULE_TOKEN" ]; then
-            echo "::error::Missing SUBMODULE_TOKEN secret. Add a PAT with access to OrchardCoreContrib/OrchardCoreContrib.App."
-            exit 1
-          fi
-
       - name: Checkout OrchardCoreContrib.App
         uses: actions/checkout@v6
         with:
