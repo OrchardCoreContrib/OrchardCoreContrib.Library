@@ -1,12 +1,7 @@
-name: Update OrchardCoreContrib.App submodules
+name: Update OrchardCoreContrib.App Submodules
 
 on:
   workflow_dispatch:
-  push:
-    branches: [ "main" ]
-
-permissions:
-  contents: read
 
 jobs:
   update-submodules:
@@ -31,10 +26,10 @@ jobs:
         env:
           SUBMODULE_TOKEN: ${{ secrets.SUBMODULE_TOKEN }}
         run: |
-          git config user.name "github-actions[bot]"
-          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git config user.name "GitHub Actions Bot"
+          git config user.email "actions@github.com"
           git add --all
           git diff --cached --quiet && exit 0
-          git commit -m "Update submodules"
+          git commit -m "Update submodules to latest versions"
           git remote set-url origin https://x-access-token:${SUBMODULE_TOKEN}@github.com/OrchardCoreContrib/OrchardCoreContrib.App.git
           git push origin HEAD:main
