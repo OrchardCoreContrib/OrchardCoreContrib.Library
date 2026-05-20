@@ -5,15 +5,6 @@
 /// </summary>
 public static class Utils
 {
-    [Obsolete("Use Greeting(string firstName, string lastName) instead.")]
-    public static string Greet(string firstName, string lastName) => $"Hello, {firstName} {lastName}!";
-
-    [Obsolete("Use Greeting(string name) instead.")]
-    public static string Greet(string name) => $"Hello, {name}!";
-
-    [Obsolete("Use Greeting() instead.")]
-    public static string Greet() => $"Hello, World!";
-
     /// <summary>
     /// Creates a personalized greeting message using the specified first and last names.
     /// </summary>
