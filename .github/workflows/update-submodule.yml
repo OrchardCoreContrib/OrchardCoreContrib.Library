@@ -84,7 +84,7 @@ jobs:
 
             [View changes](${{ steps.submodule-new.outputs.compareUrl }})
             </details>
-          branch: update-submodules
+          branch: update-submodule
           delete-branch: true
           base: main
           labels: |

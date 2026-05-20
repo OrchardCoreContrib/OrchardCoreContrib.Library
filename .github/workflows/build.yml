@@ -1,8 +1,6 @@
 name: Orchard Core Contrib Library
 
 on:
-  push:
-    branches: [ "main" ]
   pull_request:
     branches: [ "main" ]
 
