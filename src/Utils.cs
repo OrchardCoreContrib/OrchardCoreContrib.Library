@@ -19,10 +19,4 @@ public static class Utils
     /// <param name="name">The name of the person to include in the greeting. Cannot be null.</param>
     /// <returns>A string containing a greeting addressed to the specified name.</returns>
     public static string Greeting(string name) => $"Hello, {name}!";
-
-    /// <summary>
-    /// Returns a standard greeting message.
-    /// </summary>
-    /// <returns>A string containing the greeting message "Hello, World!".</returns>
-    public static string Greeting() => $"Hello, World!";
 }
