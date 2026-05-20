@@ -72,7 +72,7 @@ jobs:
           commit-message: Update submodule to latest version
           title: Update OrchardCoreContrib.Library Submodule
           body: |
-            Updated [${{ steps.submodule-new.outputs.repoName }}](${{ steps.submodule-new.outputs.repoUrl }}) from `${{ steps.submodule-new.outputs.oldShort }}` to `${{ steps.submodule-new.outputs.newShort }}`..
+            Updated [${{ steps.submodule-new.outputs.repoName }}](${{ steps.submodule-new.outputs.repoUrl }}) from ${{ steps.submodule-new.outputs.oldShort }} to ${{ steps.submodule-new.outputs.newShort }}.
 
             [View changes](${{ steps.submodule-new.outputs.compareUrl }})
           branch: update-submodules
