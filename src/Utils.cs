@@ -18,5 +18,6 @@ public static class Utils
     /// </summary>
     /// <param name="name">The name of the person to include in the greeting. Cannot be null.</param>
     /// <returns>A string containing a greeting addressed to the specified name.</returns>
+    [Obsolete("Use the Greeting(string firstName, string lastName) method instead.")]
     public static string Greeting(string name) => $"Hello, {name}!";
 }
