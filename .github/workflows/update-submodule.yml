@@ -70,7 +70,7 @@ jobs:
         with:
           token: ${{ secrets.OCC_TOKEN }}
           commit-message: Update submodule to latest version
-          title: Update OrchardCoreContrib.Library Submodule
+          title: Update OrchardCoreContrib.Library Submodule Version
           body: |
             Updated [${{ steps.submodule-new.outputs.repoName }}](${{ steps.submodule-new.outputs.repoUrl }}) from ${{ steps.submodule-new.outputs.oldShort }} to ${{ steps.submodule-new.outputs.newShort }}.
 
